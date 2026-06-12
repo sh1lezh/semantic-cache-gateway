@@ -1,4 +1,5 @@
 /target
 /model
 /qdrant_storage
+Cargo.lock
 
