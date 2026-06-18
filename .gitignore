@@ -2,4 +2,4 @@
 /model
 /qdrant_storage
 Cargo.lock
-
+.env
