@@ -91,13 +91,13 @@ run_case() {
 }
 
 run_case "1. Cache MISS (first request, real LLM call):" \
-  "What is arch linux?"
+  "What is capital of France?"
 
 run_case "2. Cache HIT (semantically identical query):" \
-  "What is arch linux?"
+  "What is capital of France?"
 
 run_case "3. Cache HIT (semantically SIMILAR but different wording):" \
-  "what's arch linux?"
+  "which city is capital of France?"
 
 echo "4. Live Metrics:"
 request_json "GET" "$BASE_URL/metrics"
