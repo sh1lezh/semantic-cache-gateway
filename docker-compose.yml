@@ -1,0 +1,37 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: semantic-cache-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    restart: unless-stopped
+
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: semantic-cache-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      API_KEY: ${API_KEY:?Set API_KEY in your .env file}
+      QDRANT_URL: http://qdrant:6334
+      APP_HOST: 0.0.0.0
+      APP_PORT: "3000"
+      CACHE_SCORE_THRESHOLD: ${CACHE_SCORE_THRESHOLD:-0.90}
+      WAIT_FOR_QDRANT: "true"
+    depends_on:
+      - qdrant
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:3000/health >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  qdrant_storage:

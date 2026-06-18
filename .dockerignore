@@ -1,0 +1,11 @@
+target/
+.git/
+.gitignore
+qdrant_storage/
+*.log
+.env
+.env.*
+Dockerfile.*
+docker-compose.*.yml
+assets/*.mp4
+assets/palette.png
