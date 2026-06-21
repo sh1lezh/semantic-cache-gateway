@@ -261,6 +261,14 @@ semantic-cache-gateway/
 ├── benchmark.sh
 ├── src/
 │   └── main.rs
+|   └── constants.rs
+|   └── dto.rs
+|   └── embedding.rs
+|   └── error.rs
+|   └── llm.rs
+|   └── metrics.rs
+|   └── routes.rs
+|   └── state.rs
 ├── model/
 │   ├── model.onnx
 │   └── tokenizer.json
